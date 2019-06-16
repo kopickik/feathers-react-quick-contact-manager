@@ -35,4 +35,32 @@ class ContactForm extends Component {
   }
 }
 
-export default reduxForm({form: 'contact'})(ContactForm)
+const validate = values => {
+  const errors = {name:{}}
+  if (!values.name || !values.name.first) {
+    errors.name.first = {
+      message: 'Please provide your first name.'
+    }
+  }
+  if (!values.phone) {
+    errors.phone = {
+      message: 'Please provide your phone number.'
+    }
+  } else if (!/^\+(?:[0-9] ?){6,14}[0-9]$/.test(values.phone)) {
+    errors.phone = {
+      message: 'Please use international format (+1800-344-2349)'
+    }
+  }
+  if (!values.email) {
+    errors.email = {
+      message: 'Please provide your email address.'
+    }
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = {
+      message: 'Invalid email address according to our regexp.'
+    }
+  }
+  return errors
+}
+
+export default reduxForm({form: 'contact', validate})(ContactForm)
