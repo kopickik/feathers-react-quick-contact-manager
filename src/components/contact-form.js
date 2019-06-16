@@ -5,6 +5,14 @@ import classnames from 'classnames'
 
 class ContactForm extends Component {
 
+  componentWillReceiveProps = nextProps => {
+    const { contact } = nextProps
+    if (contact._id !== this.props.contact._id) {
+      // initialize form
+      this.props.initialize(contact)
+    }
+  }
+
   renderField = ({ input, label, type, meta: { touched, error } }) => (
     <Form.Field className={classnames({error: touched && error})}>
       <label>{label}</label>
@@ -19,7 +27,7 @@ class ContactForm extends Component {
     return (
       <Grid centered columns={2}>
         <Grid.Column>
-          <h2 className="form-header">Add New Contact</h2>
+          <h2 className="form-header">{this.props.contact._id ? 'Edit Contact' : 'Add New Contact'}</h2>
           <Form onSubmit={handleSubmit} loading={loading}>
             <Form.Group widths="equal">
               <Field name="name.first" type="text" component={this.renderField} label="First Name" />

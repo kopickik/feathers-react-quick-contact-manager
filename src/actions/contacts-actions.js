@@ -39,3 +39,11 @@ export function updateContact(contact) {
       payload: client.put(`contacts/${contact._id}`, contact)
     })
 }
+
+export function deleteContact(id) {
+  return dispatch =>
+    dispatch({
+      type: 'DELETE_CONTACT',
+      payload: client.delete(`contacts/${id}`)
+    })
+}

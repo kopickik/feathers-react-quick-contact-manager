@@ -80,15 +80,6 @@ export default (state = defaultState, action = {}) => {
         loading: true
       }
     }
-    case 'UPDATE_CONTACT_FULFILLED': {
-      const contact = action.payload.data
-      return {
-        ...state,
-        contacts: state.contacts.map(item => item._id === contact._id ? contact : item),
-        errors: {},
-        loading: false
-      }
-    }
     case 'UPDATE_CONTACT_REJECTED': {
       const data = action.payload.response.data
       const { "name.first": first, "name.last": last, phone, email } = data.errors
@@ -99,8 +90,15 @@ export default (state = defaultState, action = {}) => {
         loading: false
       }
     }
-
-
+    case 'DELETE_CONTACT_FULFILLED': {
+      const id = action.payload.data._id
+      return {
+        ...state,
+        contacts: state.contacts.filter(item => item._id !== id),
+        errors: {},
+        loading: false
+      }
+    }
     default: return state
   }
 }
