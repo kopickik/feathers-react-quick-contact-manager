@@ -1,0 +1,6 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "igdb_url": "https://api-v3.igdb.com",
+  "igdb_key": "d0b7823f9e66e712f3e2371298d66460"
+}
