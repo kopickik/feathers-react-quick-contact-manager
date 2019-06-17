@@ -44,6 +44,9 @@ export function deleteContact(id) {
   return dispatch =>
     dispatch({
       type: 'DELETE_CONTACT',
-      payload: client.delete(`contacts/${id}`)
+      payload: () =>
+        window.confirm(`Are you sure you want to remove contact ${id}?`) ?
+          client.delete(`contacts/${id}`)
+          : 'client canceled DELETE action'
     })
 }

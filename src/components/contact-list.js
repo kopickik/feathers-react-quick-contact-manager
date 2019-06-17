@@ -2,7 +2,7 @@ import React from 'react'
 import { Card } from 'semantic-ui-react'
 import ContactCard from './contact-card'
 
-export default function ContactList({contacts, deleteContact}) {
+export default function ContactList({contacts, deleteContact, errors}) {
   const list = () => {
     return contacts.map(contact => {
       return (

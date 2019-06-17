@@ -1,3 +1,5 @@
+import { statement } from "@babel/template";
+
 const defaultState = {
   contacts: [],
   contact: {name: {}, email: ''},
@@ -74,7 +76,8 @@ export default (state = defaultState, action = {}) => {
         loading: false
       }
     }
-    case 'UPDATE_CONTACT_PENDING': {
+    case 'UPDATE_CONTACT_PENDING':
+    case 'DELETE_CONTACT_PENDING': {
       return {
         ...state,
         loading: true
@@ -94,7 +97,7 @@ export default (state = defaultState, action = {}) => {
       const id = action.payload.data._id
       return {
         ...state,
-        contacts: state.contacts.filter(item => item._id !== id),
+        contacts: state.contacts.filter(c => c._id !== id),
         errors: {},
         loading: false
       }
