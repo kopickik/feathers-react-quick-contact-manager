@@ -112,8 +112,8 @@ class Rain {
 
 const main = document.getElementsByClassName('the-matrix')
 function matrix() {
-  for (let i = 0; i < 50; ++i) {
-    new Rain({ target: main, row: 50 })
+  for (let i = 0; i < 44; ++i) {
+    new Rain({ target: main, row: 44 })
   }
 }
 
