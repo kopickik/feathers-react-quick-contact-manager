@@ -19,14 +19,7 @@ module.exports = function (app) {
       required: [true, 'Email is required.']
     },
     phone: {
-      type: String,
-      required: [true, 'Phone number required'],
-      validate: {
-        validator: function(n) {
-          return /^\+(?:[0-9] ?){6,14}[0-9]$/.test(n)
-        },
-        message: '{VALUE} is not a valid phone number.'
-      }
+      type: String
     },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
